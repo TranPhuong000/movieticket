@@ -1,0 +1,32 @@
+name: movie
+description: "A new Flutter project."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+dependencies:
+  convex_bottom_bar: ^3.2.0
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  smooth_page_indicator: ^1.1.0
+  shared_preferences: ^2.2.3
+  url_launcher: ^6.3.0
+  intl: ^0.19.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  carousel_slider: ^4.2.1
+  flutter_svg: ^2.0.10+1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/null.png
+    - assets/images/Logo-removebg.png

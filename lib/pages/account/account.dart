@@ -7,7 +7,7 @@ import 'package:movie/pages/account/detailAccount.dart';
 import 'package:movie/pages/login_signup/login_screen.dart';
 
 class AccountPage extends StatelessWidget {
-  const AccountPage({Key? key});
+  const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -89,22 +89,22 @@ class AccountPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        color: Colors.black,
         borderRadius: BorderRadius.circular(8.0),
       ),
       margin: const EdgeInsets.all(16.0),
-      child: Row(
+      child: const Row(
         children: <Widget>[
-          const CircleAvatar(
+          CircleAvatar(
             radius: 40,
             backgroundImage: AssetImage(
-                'assets/images/avata.png'), // Add your avatar image in assets folder
+                'assets/images/ava.png'), // Add your avatar image in assets folder
           ),
-          const SizedBox(width: 16.0),
+          SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
+              Text(
                 'Nguyen Kiet',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -112,9 +112,9 @@ class AccountPage extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 4.0),
+              SizedBox(height: 4.0),
               Row(
-                children: const <Widget>[
+                children: <Widget>[
                   Icon(Icons.camera_alt, size: 16.0, color: Colors.lightBlue),
                   SizedBox(width: 4.0),
                   Text(

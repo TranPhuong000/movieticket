@@ -9,8 +9,7 @@ class SelectCinemaPage extends StatefulWidget {
   final String tenPhim;
 
   const SelectCinemaPage(
-      {Key? key, required this.movieId, required this.tenPhim})
-      : super(key: key);
+      {super.key, required this.movieId, required this.tenPhim});
 
   @override
   _SelectCinemaPageState createState() => _SelectCinemaPageState();
@@ -79,13 +78,13 @@ class _SelectCinemaPageState extends State<SelectCinemaPage> {
               height: 40,
             ),
             isLoading
-                ? Center(
+                ? const Center(
                     child:
                         CircularProgressIndicator(), // Hiển thị loading khi đang fetch dữ liệu
                   )
                 : apiResultDanhSachRapChieu == null ||
                         apiResultDanhSachRapChieu.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: Text(
                           'Không có lịch chiếu',
                           style: TextStyle(color: Colors.white),
@@ -107,75 +106,72 @@ class _SelectCinemaPageState extends State<SelectCinemaPage> {
                                 isScrollable: true,
                               ),
                               Expanded(
-                                child: Container(
-                                  child: TabBarView(
-                                    children: apiResultDanhSachRapChieu
-                                        .map<Widget>((heThongRap) {
-                                      return ListView.builder(
-                                        itemCount:
-                                            heThongRap['cumRapChieu'].length,
-                                        itemBuilder: (context, index) {
-                                          final cumRap =
-                                              heThongRap['cumRapChieu'][index];
-                                          return GestureDetector(
-                                            onTap: () {
-                                              final maLichChieu =
-                                                  cumRap['lichChieuPhim'][0]
-                                                      ['maLichChieu'];
-                                              print('Tapped on: $maLichChieu');
-                                              Navigator.push(context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) {
-                                                return SelectSeatPage(
-                                                  maLichChieu: maLichChieu,
-                                                );
-                                              }));
-                                            },
-                                            child: Container(
-                                              margin: EdgeInsets.symmetric(
-                                                  vertical: 8.0,
-                                                  horizontal: 16.0),
-                                              padding: EdgeInsets.all(12.0),
-                                              decoration: BoxDecoration(
-                                                color: Colors
-                                                    .white70, // Màu nền của ListTile
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    cumRap['tenCumRap'],
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18.0,
-                                                    ),
-                                                  ),
-                                                  SizedBox(height: 8.0),
-                                                  Text(
-                                                    'Ngày chiếu: ${DateFormat('dd/MM/yyyy HH:mm').format(DateTime.parse(cumRap['lichChieuPhim'][0]['ngayChieuGioChieu']))}',
-                                                    style: TextStyle(
-                                                        fontSize: 14.0),
-                                                  ),
-                                                  SizedBox(height: 4.0),
-                                                  Text(
-                                                    'Tên rạp: ${cumRap['lichChieuPhim'][0]['tenRap']}',
-                                                    style: TextStyle(
-                                                        fontSize: 14.0),
-                                                  ),
-                                                ],
-                                              ),
+                                child: TabBarView(
+                                  children: apiResultDanhSachRapChieu
+                                      .map<Widget>((heThongRap) {
+                                    return ListView.builder(
+                                      itemCount:
+                                          heThongRap['cumRapChieu'].length,
+                                      itemBuilder: (context, index) {
+                                        final cumRap =
+                                            heThongRap['cumRapChieu'][index];
+                                        return GestureDetector(
+                                          onTap: () {
+                                            final maLichChieu =
+                                                cumRap['lichChieuPhim'][0]
+                                                    ['maLichChieu'];
+                                            print('Tapped on: $maLichChieu');
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return SelectSeatPage(
+                                                maLichChieu: maLichChieu,
+                                              );
+                                            }));
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                vertical: 8.0,
+                                                horizontal: 16.0),
+                                            padding: const EdgeInsets.all(12.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors
+                                                  .white70, // Màu nền của ListTile
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
                                             ),
-                                          );
-                                        },
-                                      );
-                                    }).toList(),
-                                  ),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  cumRap['tenCumRap'],
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18.0,
+                                                  ),
+                                                ),
+                                                const SizedBox(height: 8.0),
+                                                Text(
+                                                  'Ngày chiếu: ${DateFormat('dd/MM/yyyy HH:mm').format(DateTime.parse(cumRap['lichChieuPhim'][0]['ngayChieuGioChieu']))}',
+                                                  style: const TextStyle(
+                                                      fontSize: 14.0),
+                                                ),
+                                                const SizedBox(height: 4.0),
+                                                Text(
+                                                  'Tên rạp: ${cumRap['lichChieuPhim'][0]['tenRap']}',
+                                                  style: const TextStyle(
+                                                      fontSize: 14.0),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  }).toList(),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),

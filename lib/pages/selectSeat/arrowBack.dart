@@ -9,7 +9,6 @@ class ArrowBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 16, top: 4),
       child: IconButton(
         onPressed: () {
           Navigator.pop(context);

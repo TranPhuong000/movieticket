@@ -157,111 +157,113 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: double.infinity,
                 child: Form(
                   key: formKey,
-                  child: Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 22.0),
-                      ),
-                      //Email
-                      InputField(
-                        icon: Icons.email,
-                        label: "Tên tài khoản",
-                        controller: usernameController,
-                        inputType: TextInputType.name,
-                        validator: (value) => provider.emailValidator(value),
-                      ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 22.0),
+                        ),
+                        //Email
+                        InputField(
+                          icon: Icons.email,
+                          label: "Tên tài khoản",
+                          controller: usernameController,
+                          inputType: TextInputType.name,
+                          validator: (value) => provider.emailValidator(value),
+                        ),
 
-                      const SizedBox(
-                        height: 18,
-                      ),
+                        const SizedBox(
+                          height: 18,
+                        ),
 
-                      //Password
-                      Consumer<SettingProvider>(
-                        builder: (context, notifier, child) {
-                          return InputField(
-                            icon: Icons.lock,
-                            label: "Mật khẩu",
-                            controller: passwordController,
-                            isVisible: !notifier.isPasswordVisible,
-                            trailing: IconButton(
-                              onPressed: () => notifier.showHidePassword(),
-                              icon: Icon(!notifier.isPasswordVisible
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                            ),
-                            validator: (value) =>
-                                provider.passwordValidator(value),
-                          );
-                        },
-                      ),
-                      const Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            'Quên mật khẩu?',
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: 16,
-                              color: Colors.black,
+                        //Password
+                        Consumer<SettingProvider>(
+                          builder: (context, notifier, child) {
+                            return InputField(
+                              icon: Icons.lock,
+                              label: "Mật khẩu",
+                              controller: passwordController,
+                              isVisible: !notifier.isPasswordVisible,
+                              trailing: IconButton(
+                                onPressed: () => notifier.showHidePassword(),
+                                icon: Icon(!notifier.isPasswordVisible
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
+                              ),
+                              validator: (value) =>
+                                  provider.passwordValidator(value),
+                            );
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 15),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              'Quên mật khẩu?',
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      MyButton(
-                        onTap: login,
-                        text: isLoading ? 'Đang xử lý...' : 'Đăng Nhập',
-                      ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 80, horizontal: 15),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Bạn chưa có tài khoản?',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headlineMedium!
-                                    .copyWith(
-                                        color: Colors.black,
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        MyButton(
+                          onTap: login,
+                          text: isLoading ? 'Đang xử lý...' : 'Đăng Nhập',
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 80, horizontal: 15),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Bạn chưa có tài khoản?',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .copyWith(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 17,
+                                          fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SignUpScreeen()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Đăng ký',
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.w900,
-                                        fontSize: 17,
                                         fontFamily: GoogleFonts.montserrat()
                                             .fontFamily),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SignUpScreeen()),
-                                  );
-                                },
-                                child: Text(
-                                  'Đăng ký',
-                                  style: TextStyle(
-                                      color: Colors.blue,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w900,
-                                      fontFamily:
-                                          GoogleFonts.montserrat().fontFamily),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

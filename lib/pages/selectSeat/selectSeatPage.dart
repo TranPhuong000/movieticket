@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie/api_service.dart';
 import 'package:movie/pages/checkoutPage/checkoutPage.dart';
-import 'package:movie/pages/detailPage/arrowBack.dart';
+import 'package:movie/pages/selectSeat/arrowBack.dart';
 import 'package:movie/pages/selectSeat/info.dart';
 
 class SelectSeatPage extends StatefulWidget {
@@ -30,7 +30,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
           'Content-Type': 'application/json',
           'MaLichChieu': maLichChieuInt.toString(),
           'TokenCybersoft':
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.fWIHiHRVx9B7UlCgFCwvvXAlcVc-I-RB603rEDsM_wI',
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1UaW1lIjoiMTcyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.fWIHiHRVx9B7UlCgFCwvvXAlcVc-I-RB603rEDsM_wI',
         },
       );
 
@@ -134,48 +134,71 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
         backgroundColor: Colors.black,
         automaticallyImplyLeading: false,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ArrowBack(),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  thongTinPhim != null ? thongTinPhim['tenPhim'] : 'Loading...',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  thongTinPhim != null ? thongTinPhim['tenCumRap'] : '',
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ],
+            const ArrowBack(),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    thongTinPhim != null
+                        ? thongTinPhim['tenPhim']
+                        : 'Loading...',
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    thongTinPhim != null ? thongTinPhim['tenCumRap'] : '',
+                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       buildLegend(Colors.white, ' Chưa đặt'),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       buildLegend(Colors.grey, ' Đã đặt'),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       buildLegend(Colors.blue, ' Đang Chọn'),
                     ],
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Expanded(
                   child: buildSeatList(danhSachGhe),
                 ),
-                Container(height: 30),
+                Container(
+                  margin: const EdgeInsets.only(left: 30, right: 30),
+                  height: 20,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    color: Colors.lightBlue,
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Screen',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.all(16),
                   color: Colors.black,
@@ -183,12 +206,13 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Giá vé (${selectedSeatsCount} vé)',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        'Giá vé ($selectedSeatsCount vé)',
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Text(
-                        '${ticketPrice} VND',
-                        style: TextStyle(
+                        '$ticketPrice VND',
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.bold),
@@ -223,7 +247,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                                   ),
                                 );
                               },
-                        child: Text('Đặt vé'),
+                        child: const Text('Đặt vé'),
                       )
                     ],
                   ),
@@ -241,11 +265,11 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
           height: 20,
           color: color,
         ),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         Text(
           text,
-          style:
-              TextStyle(color: Colors.white), // Màu chữ mặc định của chú thích
+          style: const TextStyle(
+              color: Colors.white), // Màu chữ mặc định của chú thích
         ),
       ],
     );

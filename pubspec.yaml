@@ -22,6 +22,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   carousel_slider: ^4.2.1
   flutter_svg: ^2.0.10+1
+  qr_flutter: ^4.1.0
 
 flutter:
   uses-material-design: true
@@ -29,4 +30,5 @@ flutter:
   assets:
     - assets/images/
     - assets/images/null.png
+    - assets/images/ava.png
     - assets/images/Logo-removebg.png

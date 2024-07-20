@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie/api_service.dart';
 import 'package:movie/pages/detailPage/arrowBack.dart';
 import 'package:movie/pages/detailPage/background.dart';
+import 'package:movie/pages/detailPage/caster.dart';
 import 'package:movie/pages/detailPage/trailler.dart';
 import 'package:movie/pages/selectCinema/selectCinamaPage.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final String id;
 
-  const MovieDetailPage({Key? key, required this.id}) : super(key: key);
+  const MovieDetailPage({super.key, required this.id});
 
   @override
   State<MovieDetailPage> createState() => _MovieDetailPageState();
@@ -189,17 +190,13 @@ class _MovieDetailPageState extends State<MovieDetailPage>
                         padding: const EdgeInsets.all(16.0),
                         child: ElevatedButton.icon(
                           onPressed: () {
-                            if (widget.id != null) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return SelectCinemaPage(
-                                  movieId: widget.id,
-                                  tenPhim: movieDetail.tenPhim,
-                                );
-                              }));
-                            } else {
-                              print('Error: Movie ID is null');
-                            }
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return SelectCinemaPage(
+                                movieId: widget.id,
+                                tenPhim: movieDetail.tenPhim,
+                              );
+                            }));
                           },
                           icon: const Icon(Icons.local_activity,
                               color: Colors.white),
@@ -264,7 +261,7 @@ class _MovieDetailPageState extends State<MovieDetailPage>
                                             ),
                                           ),
                                           buildTitle('Diễn Viên'),
-                                          // Caster(size: size),
+                                          Caster(size: size),
                                         ],
                                       ),
                                     ),

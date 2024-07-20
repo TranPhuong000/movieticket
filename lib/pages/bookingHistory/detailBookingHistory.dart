@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class DetailBookingHistory extends StatelessWidget {
   final Map<String, dynamic> ve;
 
-  const DetailBookingHistory({Key? key, required this.ve}) : super(key: key);
+  const DetailBookingHistory({super.key, required this.ve});
 
   @override
   Widget build(BuildContext context) {
     print('from detailBookingHistory $ve');
+
+    // Create a NumberFormat instance for currency formatting
+    final currencyFormatter =
+        NumberFormat.currency(locale: 'vi_VN', symbol: 'VND');
+
+    // Extract tenHeThongRap from the first seat in danhSachGhe
+    final String tenHeThongRap = ve['danhSachGhe'].isNotEmpty
+        ? ve['danhSachGhe'][0]['tenHeThongRap']
+        : '';
+    final String tenRap =
+        ve['danhSachGhe'].isNotEmpty ? ve['danhSachGhe'][0]['tenCumRap'] : '';
+    // Convert ve data to JSON string to encode in QR code
+    final String qrData = ve.toString();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chi tiết vé'),
@@ -44,7 +59,7 @@ class DetailBookingHistory extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Row(
+                      const Row(
                         children: [
                           Icon(Icons.star, color: Colors.orange, size: 16),
                           Text('4.9'),
@@ -65,26 +80,27 @@ class DetailBookingHistory extends StatelessWidget {
               ],
             ),
             const Divider(height: 32),
-            _buildInfoRow('Mã ID:', ve['maVe'].toString()),
-            _buildInfoRow('Rạp:', '${ve['tenCumRap']} - ${ve['tenRap']}'),
+            _buildInfoRow('Mã vé:', ve['maVe'].toString()),
+            _buildInfoRow('Hệ thống rạp:', tenHeThongRap),
+            _buildInfoRow('Hệ thống rạp:', tenRap),
             _buildInfoRow('Số ghế:', _formatSeats(ve['danhSachGhe'])),
-            _buildInfoRow('Số lượng:', '1'),
-            _buildInfoRow('Tổng thanh toán:', '${ve['giaVe']} VND'),
-            _buildInfoRow('Giảm giá:', '0 VND'),
-            _buildInfoRow('Còn lại:', '${ve['giaVe']} VND'),
+            _buildInfoRow('Số lượng:', ve['danhSachGhe'].length.toString()),
+            _buildInfoRow('Giá tiền:', currencyFormatter.format(ve['giaVe'])),
+            _buildInfoRow('Giảm giá:', currencyFormatter.format(0)),
+            _buildInfoRow(
+                'Tổng thanh toán:', currencyFormatter.format(ve['giaVe'])),
             const Divider(height: 32),
             Center(
-              child: Image.asset(
-                'assets/images/qr.png',
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover,
+              child: QrImageView(
+                data: qrData,
+                version: QrVersions.auto,
+                size: 200.0,
               ),
             ),
             const SizedBox(height: 16),
-            const Center(
+            Center(
               child: Text(
-                'ID Order\n22081996',
+                'ID Order\n${ve['maVe']}',
                 textAlign: TextAlign.center,
               ),
             ),

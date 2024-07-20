@@ -33,6 +33,7 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
       appBar: AppBar(
         title: const Text('Account Details'),
         elevation: 0, // Bỏ đổ bóng của AppBar
+        backgroundColor: Colors.grey[700],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -41,7 +42,7 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
           children: [
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage('assets/images/avata.png'),
+              backgroundImage: AssetImage('assets/images/ava.png'),
             ),
             const SizedBox(height: 16),
             userData != null
@@ -71,8 +72,8 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
                         CircularProgressIndicator()), // Hiển thị vòng tròn tải khi chưa có dữ liệu
             const SizedBox(height: 16),
             ListTile(
-              leading: Icon(Icons.phone, color: Colors.white),
-              title: Text('Phone', style: const TextStyle(color: Colors.white)),
+              leading: const Icon(Icons.phone, color: Colors.white),
+              title: const Text('Phone', style: TextStyle(color: Colors.white)),
               subtitle: Text(userData?['soDT'] ?? '0,123,456,789',
                   style: const TextStyle(color: Colors.grey)),
               tileColor: Colors.grey[800], // Màu nền của ListTile
@@ -80,9 +81,12 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             ListTile(
-              leading: Icon(Icons.email, color: Colors.white),
-              title: Text('Email', style: const TextStyle(color: Colors.white)),
+              leading: const Icon(Icons.email, color: Colors.white),
+              title: const Text('Email', style: TextStyle(color: Colors.white)),
               subtitle: Text(userData?['email'] ?? 'a@gmail.com',
                   style: const TextStyle(color: Colors.grey)),
               tileColor: Colors.grey[800],

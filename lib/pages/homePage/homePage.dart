@@ -113,24 +113,25 @@ class _HomepageState extends State<Homepage> {
         appBar: AppBar(
           title: const Text(
             'Ticket Trove',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
           ),
           centerTitle: true,
           actions: <Widget>[
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: EdgeInsets.only(right: 16.0),
+                padding: const EdgeInsets.only(right: 16.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return AccountDetailPage();
+                      return const AccountDetailPage();
                     }));
                   },
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage('assets/images/avata.png'),
+                    backgroundImage: AssetImage('assets/images/ava.png'),
                   ),
                 ),
               ),
@@ -155,7 +156,7 @@ class _HomepageState extends State<Homepage> {
                                 fit: BoxFit.cover,
                                 errorBuilder: (context, error, stackTrace) {
                                   return Image.asset(
-                                    'assets/images/null.png', // Đường dẫn đến ảnh tĩnh thay thế
+                                    'assets/images/null.png',
                                     fit: BoxFit.cover,
                                   );
                                 },
@@ -257,7 +258,7 @@ class _HomepageState extends State<Homepage> {
                                                   ),
                                                   const SizedBox(height: 5),
                                                   Container(
-                                                    height: 320,
+                                                    height: 300,
                                                     clipBehavior: Clip.hardEdge,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
@@ -270,13 +271,12 @@ class _HomepageState extends State<Homepage> {
                                                       errorBuilder: (context,
                                                           error, stackTrace) {
                                                         return Image.asset(
-                                                          'assets/images/null.png', // Đường dẫn đến ảnh tĩnh thay thế
+                                                          'assets/images/null.png',
                                                           fit: BoxFit.cover,
                                                         );
                                                       },
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 20),
                                                 ],
                                               ),
                                             );
@@ -290,7 +290,7 @@ class _HomepageState extends State<Homepage> {
                             ),
                           ],
                         )
-                      : Center(child: CircularProgressIndicator()),
+                      : const Center(child: CircularProgressIndicator()),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -306,7 +306,7 @@ class _HomepageState extends State<Homepage> {
                   child: apiResultDanhSachPhim != null
                       ? SliderCarousel(
                           banners: apiResultDanhSachPhim['content'], size: size)
-                      : Center(child: CircularProgressIndicator()),
+                      : const Center(child: CircularProgressIndicator()),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
@@ -322,14 +322,13 @@ class _HomepageState extends State<Homepage> {
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                   child: Text(
-                    'Videos',
+                    'Giảm giá',
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
                 ),
-                Promo(size: size),
                 Promo(size: size),
                 Promo(size: size),
                 const SizedBox(height: 50),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:movie/api_service.dart';
 import 'package:movie/pages/checkoutPage/checkoutPage.dart';
 import 'package:movie/pages/selectSeat/arrowBack.dart';
@@ -127,6 +128,9 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
     final selectedSeatsCount = selectedSeats.length;
     final ticketPrice = calculateTotalPrice();
     final seatNames = getSelectedSeatNames();
+    final formattedTicketPrice =
+        NumberFormat.currency(locale: 'vi_VN', symbol: 'VND')
+            .format(ticketPrice);
 
     return Scaffold(
       backgroundColor: Colors.black, // Màu nền mặc định của trang
@@ -211,7 +215,7 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
                             const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       Text(
-                        '$ticketPrice VND',
+                        formattedTicketPrice,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16,

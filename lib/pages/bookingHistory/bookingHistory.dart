@@ -112,7 +112,7 @@ class _BookHistoryPageState extends State<BookHistoryPage> {
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 10),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(15),
         ),
         elevation: 4,
         child: InkWell(

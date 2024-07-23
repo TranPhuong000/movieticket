@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie/api_service.dart';
 import 'package:movie/pages/OrderSuccess/orderSuccess.dart';
-import 'package:movie/pages/selectCinema/customHeader.dart';
 import 'package:movie/pages/selectSeat/info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import './header.dart';
 
 class CheckOutPage extends StatefulWidget {
   final TicketInfo ticketInfo;
@@ -100,7 +100,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
       body: SafeArea(
         child: Column(
           children: [
-            CustomHeader(size: size, content: "CheckOut Movie"),
+            CustomHeader(size: size, content: "Thông Tin Vé"),
+
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 24),
               padding: const EdgeInsets.symmetric(vertical: 24),

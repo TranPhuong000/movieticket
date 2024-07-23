@@ -39,7 +39,7 @@ class OrderSuccess extends StatelessWidget {
                   padding: const EdgeInsets.all(30.0),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.lightBlueAccent,
                         borderRadius: BorderRadius.circular(14),
                         border: Border.all(
                           color: Colors.white,

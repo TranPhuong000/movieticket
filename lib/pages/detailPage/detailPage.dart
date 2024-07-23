@@ -198,11 +198,10 @@ class _MovieDetailPageState extends State<MovieDetailPage>
                               );
                             }));
                           },
-                          icon: const Icon(Icons.local_activity,
-                              color: Colors.white),
+                          icon: const Icon(Icons.movie, color: Colors.white),
                           label: const Text('Đặt Vé'),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.lightBlueAccent,
                             padding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 24.0),
                             textStyle: const TextStyle(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie/api_service.dart';
 import 'package:movie/mainPage.dart';
 import 'package:movie/pages/account/about.dart';
 import 'package:movie/pages/account/cinema.dart';
@@ -6,8 +7,58 @@ import 'package:movie/pages/account/contact.dart';
 import 'package:movie/pages/account/detailAccount.dart';
 import 'package:movie/pages/login_signup/login_screen.dart';
 
-class AccountPage extends StatelessWidget {
+class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
+
+  @override
+  State<AccountPage> createState() => _AccountPageState();
+}
+
+class _AccountPageState extends State<AccountPage> {
+  @override
+  void initState() {
+    super.initState();
+    fetchUserDataAndLichSuDatVe();
+  }
+
+  Map<String, dynamic>? userData1;
+  List<dynamic>? danhSachDatVe; // Danh sách thông tin đặt vé từ API
+  final ApiService apiService =
+      ApiService(baseUrl: 'https://movienew.cybersoft.edu.vn');
+
+  Future<void> fetchUserDataAndLichSuDatVe() async {
+    try {
+      final data = await getUserData();
+      if (data != null) {
+        setState(() {
+          userData1 = data;
+        });
+
+        final result = await apiService.postRequest(
+          '/api/QuanLyNguoiDung/ThongTinTaiKhoan',
+          {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ${data['accessToken']}',
+            'TokenCybersoft':
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1lIjoiMTcyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.fWIHiHRVx9B7UlCgFCwvvXAlcVc-I-RB603rEDsM_wI',
+          },
+          {},
+        );
+
+        if (result['content'] is List) {
+          setState(() {
+            danhSachDatVe = result['content'];
+          });
+        } else {
+          print('Error: Unexpected data type for danhSachDatVe');
+        }
+      } else {
+        print('No user data found');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +113,7 @@ class AccountPage extends StatelessWidget {
           ),
           _buildMenuItem(
             icon: Icons.history,
-            title: 'Lịch sử Giao dịch',
+            title: 'Lịch sử Đặt Vé',
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const Mainpage(
@@ -93,27 +144,29 @@ class AccountPage extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       margin: const EdgeInsets.all(16.0),
-      child: const Row(
+      child: Row(
         children: <Widget>[
-          CircleAvatar(
+          const CircleAvatar(
             radius: 40,
             backgroundImage: AssetImage(
                 'assets/images/ava.png'), // Add your avatar image in assets folder
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Nguyen Kiet',
-                style: TextStyle(
+                userData1 != null
+                    ? userData1!['hoTen'] ?? 'User Name'
+                    : 'User Name',
+                style: const TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
               ),
-              SizedBox(height: 4.0),
-              Row(
+              const SizedBox(height: 4.0),
+              const Row(
                 children: <Widget>[
                   Icon(Icons.camera_alt, size: 16.0, color: Colors.lightBlue),
                   SizedBox(width: 4.0),
@@ -162,6 +215,22 @@ class AccountPage extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              TextField(
+                style: const TextStyle(color: Colors.white),
+                decoration: const InputDecoration(
+                  labelText: 'Nhập mật khẩu cũ',
+                  labelStyle: TextStyle(color: Colors.white70),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white70),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.redAccent),
+                  ),
+                ),
+                onChanged: (value) {
+                  newPassword = value;
+                },
+              ),
               TextField(
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(

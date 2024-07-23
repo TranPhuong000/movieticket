@@ -37,6 +37,7 @@ class _HomepageState extends State<Homepage> {
   final CarouselController carouselController = CarouselController();
 
   dynamic apiResultDanhSachPhim;
+  dynamic apiResultDanhSachPhim1;
   dynamic apiResultDanhSachBanner;
   final ApiService apiService =
       ApiService(baseUrl: 'https://movienew.cybersoft.edu.vn');
@@ -90,9 +91,39 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
+  Future<void> fetchDanhSachphim1() async {
+    try {
+      final result = await apiService.getRequest(
+        '/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP02',
+        {
+          'Content-Type': 'application/json',
+          'TokenCybersoft':
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCA2NCIsIkhldEhhblN0cmluZyI6IjA4LzA5LzIwMjQiLCJIZXRIYW5UaW1UaW1lIjoiMTcyNTc1MzYwMDAwMCIsIm5iZiI6MTY5NTkyMDQwMCwiZXhwIjoxNzI1OTAxMjAwfQ.fWIHiHRVx9B7UlCgFCwvvXAlcVc-I-RB603rEDsM_wI',
+        },
+      );
+
+      setState(() {
+        apiResultDanhSachPhim1 = result;
+        movies = (result['content'] as List)
+            .map((movie) => Movie(
+                  maPhim: movie['maPhim'].toString(),
+                  title: movie['tenPhim'] ?? 'No Title',
+                  image: movie['hinhAnh'] ?? '',
+                  description: movie['moTa'] ?? 'No Description',
+                  duration:
+                      movie['thoiLuong']?.toString() ?? 'Unknown Duration',
+                ))
+            .toList();
+      });
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   void initState() {
     fetchDanhSachphim();
+    fetchDanhSachphim1();
     fetchDanhSachBanner();
     super.initState();
   }
@@ -303,9 +334,10 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ),
                 SizedBox(
-                  child: apiResultDanhSachPhim != null
+                  child: apiResultDanhSachPhim1 != null
                       ? SliderCarousel(
-                          banners: apiResultDanhSachPhim['content'], size: size)
+                          banners: apiResultDanhSachPhim1['content'],
+                          size: size)
                       : const Center(child: CircularProgressIndicator()),
                 ),
                 const Padding(

@@ -23,16 +23,17 @@ class OrderButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             decoration: ShapeDecoration(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
               ),
               color: Colors.blue,
             ),
             child: Text(text,
                 style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontFamily: GoogleFonts.montserrat().fontFamily)),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontFamily: GoogleFonts.montserrat().fontFamily,
+                )),
           ),
         ),
       ),

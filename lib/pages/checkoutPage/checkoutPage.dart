@@ -286,7 +286,7 @@ class MovieInfo extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8, bottom: 8),
             width: size.width,
             child: Text(
-              '1h41min',
+              '1 tiếng 41 phút',
               style: TextStyle(color: Colors.white),
             ),
           ),

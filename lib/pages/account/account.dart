@@ -76,6 +76,7 @@ class _AccountPageState extends State<AccountPage> {
               }));
             },
           ),
+          _buildSeparator(),
           _buildMenuItem(
             icon: Icons.lock,
             title: 'Đổi mật khẩu',
@@ -83,6 +84,7 @@ class _AccountPageState extends State<AccountPage> {
               _showChangePasswordDialog(context);
             },
           ),
+          _buildSeparator(),
           _buildMenuItem(
             icon: Icons.contact_emergency,
             title: 'Liên Hệ',
@@ -92,6 +94,7 @@ class _AccountPageState extends State<AccountPage> {
               }));
             },
           ),
+          _buildSeparator(),
           _buildMenuItem(
             icon: Icons.account_balance,
             title: 'Các Rạp Chiếu',
@@ -101,6 +104,7 @@ class _AccountPageState extends State<AccountPage> {
               }));
             },
           ),
+          _buildSeparator(),
           _buildMenuItem(
             icon: Icons.contact_page,
             title: 'Về Chúng Tôi',
@@ -111,6 +115,7 @@ class _AccountPageState extends State<AccountPage> {
               }));
             },
           ),
+          _buildSeparator(),
           _buildMenuItem(
             icon: Icons.history,
             title: 'Lịch sử Đặt Vé',
@@ -122,6 +127,7 @@ class _AccountPageState extends State<AccountPage> {
               }));
             },
           ),
+          _buildSeparator(),
           _buildMenuItem(
             icon: Icons.logout,
             title: 'Đăng Xuất',
@@ -133,6 +139,14 @@ class _AccountPageState extends State<AccountPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSeparator() {
+    return Container(
+      height: 1.0,
+      color: Colors.grey[800],
+      margin: const EdgeInsets.symmetric(horizontal: 16.0),
     );
   }
 
@@ -186,19 +200,61 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
+  // Widget _buildMenuItem({
+  //   required IconData icon,
+  //   required String title,
+  //   required VoidCallback onTap,
+  // }) {
+  //   return ListTile(
+  //     leading: Icon(icon, color: Colors.lightBlue),
+  //     title: Text(
+  //       title,
+  //       style: const TextStyle(color: Colors.white),
+  //     ),
+  //     trailing: const Icon(Icons.chevron_right, color: Colors.white),
+  //     onTap: onTap,
+  //   );
+  // }
+
   Widget _buildMenuItem({
     required IconData icon,
     required String title,
     required VoidCallback onTap,
   }) {
-    return ListTile(
-      leading: Icon(icon, color: Colors.lightBlue),
-      title: Text(
-        title,
-        style: const TextStyle(color: Colors.white),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8.0),
+        child: Container(
+          margin: const EdgeInsets.symmetric(vertical: 4.0),
+          decoration: BoxDecoration(
+            color: Colors.black26,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: ListTile(
+            leading: Icon(icon, color: Colors.lightBlue),
+            title: Text(
+              title,
+              style: const TextStyle(color: Colors.white, fontSize: 18),
+            ),
+            trailing: Container(
+              padding:
+                  const EdgeInsets.all(2.0), // Add padding to the container
+              decoration: BoxDecoration(
+                color: Colors.grey[900], // Màu nền icon chevron
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              child: const Icon(
+                Icons.chevron_right,
+                color: Colors.white,
+              ),
+            ),
+            onTap: onTap,
+          ),
+        ),
       ),
-      trailing: const Icon(Icons.chevron_right, color: Colors.white),
-      onTap: onTap,
     );
   }
 

@@ -6,96 +6,101 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          title: Text(
-            'Liên hệ Ticket Trove',
-            style: GoogleFonts.roboto(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus(); // hide keyboard
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: Colors.black,
+          appBar: AppBar(
+            title: Text(
+              'Liên hệ Ticket Trove',
+              style: GoogleFonts.roboto(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back, color: Colors.white),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            backgroundColor: Colors.grey[800], // AppBar màu đỏ đậm
           ),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          backgroundColor: Colors.grey[800], // AppBar màu đỏ đậm
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Thông tin liên hệ',
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                ListTile(
-                  leading: Icon(Icons.location_on, color: Colors.white),
-                  title: Text('Địa chỉ:',
-                      style: GoogleFonts.roboto(color: Colors.white)),
-                  subtitle: Text('123 Đường ABC, Quận 1, TP.HCM',
-                      style: GoogleFonts.roboto(color: Colors.grey[300])),
-                ),
-                ListTile(
-                  leading: Icon(Icons.phone, color: Colors.white),
-                  title: Text('Số điện thoại:',
-                      style: GoogleFonts.roboto(color: Colors.white)),
-                  subtitle: Text('+84 123 456 789',
-                      style: GoogleFonts.roboto(color: Colors.grey[300])),
-                ),
-                ListTile(
-                  leading: Icon(Icons.email, color: Colors.white),
-                  title: Text('Email:',
-                      style: GoogleFonts.roboto(color: Colors.white)),
-                  subtitle: Text('contact@tickettrove.com',
-                      style: GoogleFonts.roboto(color: Colors.grey[300])),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Gửi tin nhắn',
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                const ContactForm(),
-                const SizedBox(height: 20),
-                Text(
-                  'Vị trí của chúng tôi',
-                  style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage(
-                          'assets/images/null.png'), // Replace with a real map image
-                      fit: BoxFit.cover,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Thông tin liên hệ',
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                    borderRadius: BorderRadius.circular(10),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  ListTile(
+                    leading: Icon(Icons.location_on, color: Colors.white),
+                    title: Text('Địa chỉ:',
+                        style: GoogleFonts.roboto(color: Colors.white)),
+                    subtitle: Text('123 Đường ABC, Quận 1, TP.HCM',
+                        style: GoogleFonts.roboto(color: Colors.grey[300])),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.phone, color: Colors.white),
+                    title: Text('Số điện thoại:',
+                        style: GoogleFonts.roboto(color: Colors.white)),
+                    subtitle: Text('+84 123 456 789',
+                        style: GoogleFonts.roboto(color: Colors.grey[300])),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.email, color: Colors.white),
+                    title: Text('Email:',
+                        style: GoogleFonts.roboto(color: Colors.white)),
+                    subtitle: Text('contact@tickettrove.com',
+                        style: GoogleFonts.roboto(color: Colors.grey[300])),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Gửi tin nhắn',
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const ContactForm(),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Vị trí của chúng tôi',
+                    style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      image: const DecorationImage(
+                        image: AssetImage(
+                            'assets/images/null.png'), // Replace with a real map image
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

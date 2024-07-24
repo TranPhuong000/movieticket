@@ -173,7 +173,7 @@ class _MovieDetailPageState extends State<MovieDetailPage>
                                     ),
                                     const SizedBox(height: 8),
                                     Text(
-                                      '1h 41min',
+                                      '1 tiếng 41 phút',
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Colors.grey[400],
@@ -199,9 +199,12 @@ class _MovieDetailPageState extends State<MovieDetailPage>
                             }));
                           },
                           icon: const Icon(Icons.movie, color: Colors.white),
-                          label: const Text('Đặt Vé'),
+                          label: const Text(
+                            'Đặt Vé',
+                            style: TextStyle(color: Colors.white),
+                          ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.lightBlueAccent,
+                            backgroundColor: Colors.blue,
                             padding: const EdgeInsets.symmetric(
                                 vertical: 12.0, horizontal: 24.0),
                             textStyle: const TextStyle(

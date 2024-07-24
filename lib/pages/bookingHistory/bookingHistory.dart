@@ -66,7 +66,7 @@ class _BookHistoryPageState extends State<BookHistoryPage> {
         children: [
           const SizedBox(height: 30),
           SizedBox(
-            height: size.height / 10,
+            height: size.height / 20,
             child: const Center(
               child: Text(
                 "Lịch Sử Đặt Vé",
@@ -113,8 +113,9 @@ class _BookHistoryPageState extends State<BookHistoryPage> {
         margin: const EdgeInsets.symmetric(vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
+          side: BorderSide(color: Colors.grey.shade300, width: 4),
         ),
-        elevation: 4,
+        elevation: 8,
         child: InkWell(
           onTap: () {
             // Implement navigation to detail page with 've' data
@@ -131,10 +132,10 @@ class _BookHistoryPageState extends State<BookHistoryPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  width: 80,
-                  height: 80,
+                  width: 90,
+                  height: 90,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(2),
                     image: DecorationImage(
                       image: NetworkImage(ve['hinhAnh']),
                       fit: BoxFit.cover,
@@ -168,7 +169,11 @@ class _BookHistoryPageState extends State<BookHistoryPage> {
                     ],
                   ),
                 ),
-                const Icon(Icons.arrow_forward_ios, color: Colors.grey),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.grey,
+                  size: 20,
+                ),
               ],
             ),
           ),

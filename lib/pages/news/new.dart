@@ -68,7 +68,8 @@ class _NewPageState extends State<NewPage> {
       appBar: AppBar(
         title: const Text(
           'Tin Tức',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 28),
         ),
         centerTitle: true,
         backgroundColor: Colors.black,
@@ -99,6 +100,15 @@ class NewsPage extends StatelessWidget {
           BreakingNewsSection(newsList: newsList),
           const SizedBox(
             height: 20,
+          ),
+          Text(
+            'Mới Nhất',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white),
+          ),
+          const Divider(
+            color: Colors.grey,
+            thickness: 3.0,
           ),
           RecentNewsSection(newsList: newsList),
         ],
@@ -159,6 +169,11 @@ class BreakingNewsSection extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const Divider(color: Colors.grey),
+                  const Text(
+                    'Ticket Trove',
+                    style: TextStyle(color: Colors.white),
+                  )
                 ],
               ),
             ),
@@ -181,66 +196,103 @@ class RecentNewsSection extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: newsList.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailNewsPage(
-                  imageUrl: newsList[index]['image'],
-                  title: newsList[index]['title'],
-                  content: newsList[index]['content'],
-                ),
-              ),
-            );
-          },
-          child: Container(
-            margin: const EdgeInsets.all(8),
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.black26,
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.lightBlue[50],
-                  ),
-                  child: Image.network(
-                    newsList[index]['image'],
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Text(
-                              newsList[index]['title'],
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
+        return Column(
+          children: [
+            MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailNewsPage(
+                        imageUrl: newsList[index]['image']!,
+                        title: newsList[index]['title']!,
+                        content: newsList[index]['content']!,
+                      ),
+                    ),
+                  );
+                },
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    margin: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black26,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 2,
+                          offset: const Offset(0, 6),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.lightBlue[50],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              newsList[index]['image']!,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          const Icon(Icons.arrow_right,
-                              size: 30, color: Colors.white),
-                        ],
-                      ),
-                    ],
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width / 2,
+                                    child: Text(
+                                      newsList[index]['title']!,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  const Icon(Icons.arrow_forward_ios,
+                                      size: 20, color: Colors.white),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              // Optionally, add a short description or other details here
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+            if (index <
+                newsList.length - 1) // Không thêm Divider sau mục cuối cùng
+              const Divider(
+                color: Colors.grey,
+                thickness: 1.0,
+                indent: 8.0,
+                endIndent: 8.0,
+              ),
+          ],
         );
       },
     );

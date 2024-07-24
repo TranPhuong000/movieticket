@@ -31,7 +31,7 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
     return Scaffold(
       backgroundColor: Colors.grey[900], // Màu nền của trang
       appBar: AppBar(
-        title: const Text('Account Details'),
+        title: const Text('Tài khoản'),
         elevation: 0, // Bỏ đổ bóng của AppBar
         backgroundColor: Colors.grey[700],
       ),
@@ -73,7 +73,8 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
             const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.phone, color: Colors.white),
-              title: const Text('Phone', style: TextStyle(color: Colors.white)),
+              title: const Text('Số điện thoại',
+                  style: TextStyle(color: Colors.white)),
               subtitle: Text(userData?['soDT'] ?? '0,123,456,789',
                   style: const TextStyle(color: Colors.grey)),
               tileColor: Colors.grey[800], // Màu nền của ListTile
@@ -97,7 +98,7 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
             const Divider(color: Colors.grey),
             const SizedBox(height: 16),
             const Text(
-              'Account Information',
+              'Thông tin tài khoản',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -105,9 +106,9 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
               ),
             ),
             const SizedBox(height: 8),
-            const Text('Member since: January 2024',
+            const Text('Thành viên vào: Tháng 1 2024',
                 style: TextStyle(color: Colors.grey)),
-            const Text('Subscription plan: Premium',
+            const Text('Đăng ký: Premium',
                 style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 16),
           ],

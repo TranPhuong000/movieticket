@@ -171,7 +171,7 @@ class _AccountPageState extends State<AccountPage> {
                   Icon(Icons.camera_alt, size: 16.0, color: Colors.lightBlue),
                   SizedBox(width: 4.0),
                   Text(
-                    'MEMBER',
+                    'Thành viên',
                     style: TextStyle(
                       fontSize: 16.0,
                       color: Colors.grey,

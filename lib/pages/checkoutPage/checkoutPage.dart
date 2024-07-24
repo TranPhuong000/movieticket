@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:movie/api_service.dart';
 import 'package:movie/pages/OrderSuccess/orderSuccess.dart';
 import 'package:movie/pages/selectSeat/info.dart';
@@ -27,6 +28,8 @@ class CheckOutPage extends StatefulWidget {
 }
 
 class _CheckOutPageState extends State<CheckOutPage> {
+  final currencyFormatter =
+      NumberFormat.currency(locale: 'vi_VN', symbol: 'VND');
   Map<String, dynamic>? userData;
   final ApiService apiService =
       ApiService(baseUrl: 'https://movienew.cybersoft.edu.vn');
@@ -136,7 +139,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
                 '${widget.thongTinPhim['ngayChieu']} ${widget.thongTinPhim['gioChieu']}'),
             BuildPriceTag('Số Ghế',
                 formatSeatNumbers(widget.selectedSeatNames)), // Đã sửa ở đây
-            BuildPriceTag('Giá', '${widget.ticketPrice} VND'),
+            BuildPriceTag('Giá', currencyFormatter.format(widget.ticketPrice)),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 24),
               padding: const EdgeInsets.symmetric(vertical: 12),

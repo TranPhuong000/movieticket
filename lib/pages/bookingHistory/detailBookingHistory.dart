@@ -66,7 +66,7 @@ class DetailBookingHistory extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Text('Thời Lượng: ${ve['thoiLuongPhim']} min'),
+                      Text('Thời Lượng: ${ve['thoiLuongPhim']} phút'),
                       const SizedBox(height: 8),
                       Text(
                         'Ngày đặt vé: ${DateFormat('dd/MM/yyyy HH:mm').format(DateTime.parse(ve['ngayDat']))}',
@@ -88,7 +88,9 @@ class DetailBookingHistory extends StatelessWidget {
             _buildInfoRow('Giá tiền:', currencyFormatter.format(ve['giaVe'])),
             _buildInfoRow('Giảm giá:', currencyFormatter.format(0)),
             _buildInfoRow(
-                'Tổng thanh toán:', currencyFormatter.format(ve['giaVe'])),
+                'Tổng thanh toán:',
+                currencyFormatter
+                    .format(ve['giaVe'] * ve['danhSachGhe'].length)),
             const Divider(height: 32),
             Center(
               child: QrImageView(

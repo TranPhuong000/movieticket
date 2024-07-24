@@ -222,7 +222,7 @@ class _MovieDetailPageState extends State<MovieDetailPage>
                               child: TabBar(
                                 tabs: const [
                                   Tab(
-                                    text: 'About Movie',
+                                    text: 'Thông tin phim',
                                   ),
                                   Tab(
                                     text: 'Trailers',

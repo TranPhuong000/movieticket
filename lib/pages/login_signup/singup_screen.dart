@@ -107,7 +107,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
           children: [
             const CustomBackground(),
             Positioned(
-              top: 40,
+              top: 30,
               left: 2,
               child: IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new),
@@ -118,7 +118,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 80, left: 140),
+              padding: const EdgeInsets.only(top: 30, left: 130),
               child: Column(
                 children: [
                   Text(
@@ -133,7 +133,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 160.0),
+              padding: const EdgeInsets.only(top: 100.0),
               child: Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -149,7 +149,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                   child: Column(
                     children: [
                       const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
                       ),
                       //full name
                       InputField(
@@ -160,7 +160,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                             provider.validator(value, "Nhập tên tài khoản"),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 1,
                       ),
                       //Password
                       Consumer<SettingProvider>(
@@ -181,7 +181,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                         );
                       }),
                       const SizedBox(
-                        height: 8,
+                        height: 1,
                       ),
                       //Email
                       InputField(
@@ -192,7 +192,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                         validator: (value) => provider.emailValidator(value),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 1,
                       ),
                       //Phone number
                       InputField(
@@ -204,7 +204,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                         validator: (value) => provider.phoneValidator(value),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 1,
                       ),
                       //Phone number
                       InputField(
@@ -214,7 +214,7 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                         inputType: TextInputType.text,
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 1,
                       ),
                       InputField(
                         icon: Icons.person,
@@ -223,14 +223,14 @@ class _SignUpScreeenState extends State<SignUpScreeen> {
                         inputType: TextInputType.visiblePassword,
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 18,
                       ),
                       const Text(
                         'Bằng việc nhấn nút đăng ký bên dưới, bạn đã đồng ý với các điều khoản của Ticket Trove',
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 18,
                       ),
                       MyButton(onTap: SignUp, text: 'Đăng Ký'),
                     ],
